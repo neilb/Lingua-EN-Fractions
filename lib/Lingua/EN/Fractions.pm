@@ -83,7 +83,7 @@ For example
  fraction2words('3/4');    # "three quarters"
  fraction2words('5/17');   # "five seventeenths"
  fraction2words('5');      # undef
- fraction2words('-3/5');   # "minus four fifths"
+ fraction2words('-3/5');   # "minus three fifths"
 
 At the moment, no attempt is made to simplify the fraction,
 so C<'5/2'> will return "five halves" rather than "two and a half".
