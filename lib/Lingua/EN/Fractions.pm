@@ -70,6 +70,13 @@ Lingua::EN::Fractions - convert "3/4" into "three quarters", etc
  my $fraction = '3/4';
  my $as_words = fraction2words($fraction);
 
+Or using L<Number::Fraction>:
+
+ use Number::Fraction;
+
+ my $fraction = Number::Fraction->new(2, 7);
+ my $as_words = fraction2words($fraction);
+
 =head1 DESCRIPTION
 
 This module provides a function, C<fraction2words>,
@@ -85,6 +92,11 @@ For example
  fraction2words('5');      # undef
  fraction2words('-3/5');   # "minus three fifths"
 
+You can also pass in a fraction represented using L<Number::Fraction>:
+
+ $fraction = Number::Fraction->new(2, 7);
+ $as_words = fraction2words($fraction);    # "two sevenths"
+
 At the moment, no attempt is made to simplify the fraction,
 so C<'5/2'> will return "five halves" rather than "two and a half".
 
@@ -98,7 +110,8 @@ L<Lingua::EN::Numbers::Ordinate>,
 L<Lingua::EN::Numbers::Years> - other modules for converting numbers
 into words.
 
-L<Number::Fraction> may be supported in a future release.
+L<Number::Fraction> - a class for representing fractions and
+operations on them.
 
 =head1 REPOSITORY
 
