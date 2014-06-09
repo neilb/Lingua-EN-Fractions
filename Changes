@@ -1,5 +1,8 @@
 Revision history for Perl module Lingua::EN::Fractions
 
+0.04 2014-06-
+    - Added a testsuite for the :constants option to Number::Fraction
+
 0.03 2014-06-07
     - Skip Number::Fraction as a prereq, since it's only explicitly
       used in a testsuite, which is skipped if you don't have
