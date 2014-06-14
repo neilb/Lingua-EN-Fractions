@@ -1,6 +1,8 @@
 Revision history for Perl module Lingua::EN::Fractions
 
-0.04 2014-06-
+0.04 2014-06-15
+    - Added support for a whole part ahead of the fraction.
+      eg "1 2/3" is converted as "one and two thirds".
     - Added a testsuite for the :constants option to Number::Fraction
 
 0.03 2014-06-07

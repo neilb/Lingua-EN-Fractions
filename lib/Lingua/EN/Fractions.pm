@@ -21,6 +21,7 @@ sub fraction2words
     my $fraction = qr|
                         ^
                         (\s*-)?
+                        (\s*([0-9]+)\s+)?
                         \s*
                         ([0-9]+)
                         \s*
@@ -31,8 +32,7 @@ sub fraction2words
                         $
                      |x;
 
-    if (my ($negate, $numerator, $denominator) = $number =~ $fraction) {
-        my $numerator_as_words   = num2en($numerator);
+    if (my ($negate, $preamble, $wholepart, $numerator, $denominator) = $number =~ $fraction) {
         my $denominator_as_words = do {
             if (exists $special_denominators{$denominator}) {
                 if ($numerator == 1) {
@@ -46,9 +46,20 @@ sub fraction2words
                 num2en_ordinal($denominator);
             }
         };
+        my $numerator_as_words = do {
+            if ($numerator == 1 && $wholepart) {
+                # "1 1/2" -> "one and *a* half"
+                # "1 1/8" -> "one and *an* eighth"
+                $denominator_as_words =~ /^[aeiou]/i ? 'an' : 'a';
+            }
+            else {
+                num2en($numerator);
+            }
+        };
         my $phrase = '';
         
         $phrase .= 'minus ' if $negate;
+        $phrase .= num2en($wholepart).' and ' if $wholepart;
         $phrase .= "$numerator_as_words $denominator_as_words";
         $phrase .= 's' if $numerator > 1;
         return $phrase;
@@ -91,6 +102,15 @@ For example
  fraction2words('5/17');   # "five seventeenths"
  fraction2words('5');      # undef
  fraction2words('-3/5');   # "minus three fifths"
+
+You can also pass a whole number ahead of the fraction:
+
+ fraction2words('1 1/2');  # "one and a half"
+ fraction2words('-1 1/8'); # "minus one and an eighth"
+ fraction2words('12 3/4'); # "twelve and three quarters"
+
+Note that instead of "one and one half",
+you'll get back "one and a half".
 
 You can also pass in a fraction represented using L<Number::Fraction>:
 
