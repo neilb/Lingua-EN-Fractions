@@ -1,5 +1,10 @@
 Revision history for Perl module Lingua::EN::Fractions
 
+0.05 2014-06-16
+    - Added support for Unicode fraction characters and the Unicode
+      FRACTION SLASH.
+    - Adding the Unicode support bumps min version to 5.8.0, for pragma utf8.
+
 0.04 2014-06-15
     - Added support for a whole part ahead of the fraction.
       eg "1 2/3" is converted as "one and two thirds".
