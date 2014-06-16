@@ -22,9 +22,13 @@ my @TESTS =
     [   [' - ⅔'],       'minus two thirds'          ],
     [   ['-1⅘'],        'minus one and four fifths' ],
 
-    # These use the unicode character FRACTION SLASH
+    # These use the Unicode character FRACTION SLASH (U+2044)
     [   ['3⁄4'],        'three quarters'            ],
     [   ['1 2⁄5'],      'one and two fifths'        ],
+
+    # These use the Unicode character MINUS SIGN (U+2212)
+    [   ['−5/6'],       'minus five sixths'         ],
+    [   ['−⅚'],         'minus five sixths'         ],
 );
 
 plan tests => int(@TESTS);

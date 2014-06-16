@@ -33,7 +33,8 @@ my %unicode =
     '⅜' => '3/8',
     '⅝' => '5/8',
     '⅞' => '7/8',
-    '⁄' => '/',     # FRACTION SLASH &#8260;
+    '⁄' => '/',     # FRACTION SLASH (U+2044)
+    '−' => '-',     # MINUS SIGN (U+2212)
 );
 my $unicode_regexp = join('|', keys %unicode);
 
@@ -54,7 +55,7 @@ sub fraction2words
                         $
                      |x;
 
-    $number =~ s/($unicode_regexp)/ $unicode{$1}/;
+    $number =~ s/($unicode_regexp)/ $unicode{$1}/g;
 
     if (my ($negate, $preamble, $wholepart, $numerator, $denominator) = $number =~ $fraction) {
         my $denominator_as_words = do {
