@@ -141,8 +141,8 @@ you'll get back "one and a half".
 
 =head2 Unicode fraction characters
 
-As of 0.05, certain Unicode characters are also supported.
-For example:
+As of version 0.05,
+certain Unicode characters are also supported.  For example:
 
  fraction2words('½')        # "one half"
  fraction2words('1⅜')       # "one and three eighths"
@@ -153,6 +153,11 @@ character from the regular slash:
 
  fraction2words('1/2')      # "one half"
  fraction2words('1⁄2')      # "one half"
+
+As of version 0.06, you an also use the Unicode MINUS SIGN:
+
+ fraction2words('−1/2')    # "minus one half"
+ fraction2words('−⅘')      # "minus four fifths"
 
 At the moment, the DIVISION SLASH character isn't handled.
 Feel free to tell me if you think I got that wrong.
