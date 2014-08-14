@@ -1,5 +1,9 @@
 Revision history for Perl module Lingua::EN::Fractions
 
+0.07 2014-08-16
+    - Added Travis config, and use CopyFilesFromBuild to copy Makefile.PL
+      to the top directory, so Travis can use it.
+
 0.06 2014-06-18
     - Added support for Unicode MINUS SIGN. Thanks to Nick Patch
       for the pull request that added this.
