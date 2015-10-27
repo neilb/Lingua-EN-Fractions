@@ -190,7 +190,7 @@ operations on them.
 
 =head1 REPOSITORY
 
-L<https://github.com/neilbowers/Lingua-EN-Fractions>
+L<https://github.com/neilb/Lingua-EN-Fractions>
 
 =head1 AUTHOR
 
