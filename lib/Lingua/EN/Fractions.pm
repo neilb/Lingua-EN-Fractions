@@ -43,9 +43,18 @@ my %unicode =
 );
 my $unicode_regexp = join('|', keys %unicode);
 
+my %english =
+(
+    American => { minus => 'negative' },
+    British => { minus => 'minus' },
+);
+
 sub fraction2words
 {
-    my $number = shift;
+    my ($number, $variant) = @_;
+    $variant ||= 'British';
+    die qq(Unknown variant "$variant".\n) unless exists $english{$variant};
+
     my $fraction = qr|
                         ^
                         (\s*-)?
@@ -88,7 +97,7 @@ sub fraction2words
         };
         my $phrase = '';
         
-        $phrase .= 'minus ' if $negate;
+        $phrase .= $english{$variant}{minus} . ' ' if $negate;
         $phrase .= num2en($wholepart).' and ' if $wholepart;
         $phrase .= "$numerator_as_words $denominator_as_words";
         $phrase .= 's' if $numerator != 1;
@@ -166,6 +175,14 @@ As of version 0.06, you an also use the Unicode MINUS SIGN:
 
 At the moment, the DIVISION SLASH character isn't handled.
 Feel free to tell me if you think I got that wrong.
+
+=head2 British versus American variants
+
+American English uses "negative" instead of British "minus". The
+second optional argument to fraction2words can be set to the variant you want:
+
+ fraction2words('-3/5', 'British');   # "minus three fifths" (same as default)
+ fraction2words('-3/5', 'American');  # "negative three fifths"
 
 =head2 Working with Number::Fraction
 
